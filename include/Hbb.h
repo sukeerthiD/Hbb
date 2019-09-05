@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include <TTree.h>
+#include "TFile.h"
 
 #include "EVENT/LCCollection.h"
 using namespace lcio ;
@@ -60,22 +61,44 @@ class Hbb : public Processor {
    */
   virtual void end() ;
 
-
+void setZero();
  protected:
 
-  /** Input collection name.
-   */
- std::string _HbbCol;
- std::string _colMCP{} ;
- int nH ;
- int nb ;
- int _nRun{} ;
- int _nEvt{} ;
- float p{};
+  /** Input collection name.*/
+std::string _outfile{};
+std::string _HbbCol{};
+std::string _FitCol {};
+std::string _SLDCol {};
+std::string _colMCP{} ;
 
+  /** Input for TTree and its branches. */
+TTree *HbbTree{};
+TFile* _fout = nullptr ;
+int Hbbflag{};
+float hist_E_allH{};
+float hist_M_allH{};
+float hist_E_Hbb{};
+float hist_E_MCISR{};
+float hist_E_recISR{};
+int nSLDB;
+int nSLDC;
+int nSLDBC;
+/** Input */
+int nH ;
+int nb ;
+int nsldb;
+int nsldc;
+int nsld;
+int _nRun{} ;
+int _nEvt{} ;
+// float p{};
 
-
-/////////////////////    TTree* _tree {};
+int nFlagHbb{};
+float bestchisqu{};
+float bestprob{};
+float bestchisq{};
+float Hmass{};
+float Zmass{};
 
 
 } ;
